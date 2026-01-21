@@ -412,67 +412,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Portfolio Section */}
-      <section id="projects" className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-card/50 to-background -z-10"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Design Portfolio</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              A showcase of diverse design work across restaurant menus, hotel designs, and professional documents
-            </p>
-          </div>
-
-          {/* Filter Buttons */}
-          <div className="flex flex-wrap gap-3 justify-center mb-16">
-            {['all', 'restaurant', 'hotel', 'professional'].map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`px-6 py-2.5 rounded-lg font-medium transition duration-300 ${
-                  activeFilter === filter
-                    ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/30'
-                    : 'bg-card border border-border text-muted-foreground hover:border-accent hover:text-foreground'
-                }`}
-              >
-                {filter === 'all' && 'All Projects'}
-                {filter === 'restaurant' && 'Restaurant Menus'}
-                {filter === 'hotel' && 'Hotel & Resorts'}
-                {filter === 'professional' && 'Professional'}
-              </button>
-            ))}
-          </div>
-
-          {/* Portfolio Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredItems.map((item) => (
-              <div
-                key={item.id}
-                className="group relative bg-card rounded-xl overflow-hidden border border-border hover:border-accent transition duration-300"
-              >
-                <div className="relative h-96 overflow-hidden bg-muted">
-                  <img
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
-                    <div>
-                      <p className="text-accent text-sm font-semibold uppercase mb-1">View Details</p>
-                      <p className="text-white">{item.description}</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <p className="text-accent text-xs font-semibold uppercase tracking-wide mb-2">{item.category}</p>
-                  <h3 className="text-lg font-bold text-foreground">{item.title}</h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Portfolio Groups with Carousels */}
       <section className="py-24 px-4 bg-gradient-to-b from-background to-card/30">
