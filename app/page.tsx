@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Portfolio() {
@@ -86,6 +86,85 @@ export default function Portfolio() {
   const filteredItems = activeFilter === 'all'
     ? portfolioItems
     : portfolioItems.filter(item => item.category === activeFilter);
+
+  // All available images grouped by name pattern
+  const allImages = [
+    // A4 Designs (Restaurant Menus)
+    { id: 1, name: 'a4_1', image: '/a4_1.jpg', group: 'A4 Designs', color: 'from-orange-500 to-red-500' },
+    { id: 2, name: 'a4_2', image: '/a4_2.jpg', group: 'A4 Designs', color: 'from-orange-500 to-red-500' },
+    { id: 3, name: 'a4_3', image: '/a4_3.jpg', group: 'A4 Designs', color: 'from-orange-500 to-red-500' },
+    { id: 4, name: 'a4_4', image: '/a4_4.jpg', group: 'A4 Designs', color: 'from-orange-500 to-red-500' },
+
+    // A4D Designs (Restaurant Menus)
+    { id: 5, name: 'a4d_1', image: '/a4d_1.jpg', group: 'A4D Designs', color: 'from-orange-500 to-yellow-500' },
+    { id: 6, name: 'a4d_2', image: '/a4d_2.jpg', group: 'A4D Designs', color: 'from-orange-500 to-yellow-500' },
+    { id: 7, name: 'a4d_3', image: '/a4d_3.jpg', group: 'A4D Designs', color: 'from-orange-500 to-yellow-500' },
+    { id: 8, name: 'a4d_4', image: '/a4d_4.jpg', group: 'A4D Designs', color: 'from-orange-500 to-yellow-500' },
+
+    // Logos
+    { id: 9, name: 'logo1', image: '/logo1.jpg', group: 'Logos', color: 'from-blue-500 to-indigo-500' },
+    { id: 10, name: 'logo2', image: '/logo2.jpg', group: 'Logos', color: 'from-blue-500 to-indigo-500' },
+    { id: 11, name: 'logo_shiger', image: '/logo_shiger.jpg', group: 'Logos', color: 'from-blue-500 to-indigo-500' },
+    { id: 12, name: 'logo_shopper', image: '/logo_shopper.jpg', group: 'Logos', color: 'from-blue-500 to-indigo-500' },
+
+    // Hushe Posters
+    { id: 13, name: 'hushe_poster1', image: '/hushe_poster1.jpg', group: 'Hushe Posters', color: 'from-yellow-500 to-amber-500' },
+    { id: 14, name: 'hushe_poster2', image: '/hushe_poster2.jpg', group: 'Hushe Posters', color: 'from-yellow-500 to-amber-500' },
+    { id: 15, name: 'hushe_poster3', image: '/hushe_poster3.jpg', group: 'Hushe Posters', color: 'from-yellow-500 to-amber-500' },
+    { id: 16, name: 'hushe_poster4', image: '/hushe_poster4.jpg', group: 'Hushe Posters', color: 'from-yellow-500 to-amber-500' },
+
+    // Hiring Posters
+    { id: 17, name: 'hiring_post1', image: '/hiring_post1.jpg', group: 'Hiring Posters', color: 'from-green-500 to-emerald-500' },
+    { id: 18, name: 'hiring_post2', image: '/hiring_post2.jpg', group: 'Hiring Posters', color: 'from-green-500 to-emerald-500' },
+
+    // North Digital
+    { id: 19, name: 'north_digit1', image: '/north_digit1.jpg', group: 'North Digital', color: 'from-cyan-500 to-blue-500' },
+    { id: 20, name: 'north_digit2', image: '/north_digit2.jpg', group: 'North Digital', color: 'from-cyan-500 to-blue-500' },
+    { id: 21, name: 'north_digit3', image: '/north_digit3.jpg', group: 'North Digital', color: 'from-cyan-500 to-blue-500' },
+    { id: 22, name: 'north_digit4', image: '/north_digit4.jpg', group: 'North Digital', color: 'from-cyan-500 to-blue-500' },
+
+    // Property Ads
+    { id: 23, name: 'property_ad_1', image: '/property_ad_1.jpg', group: 'Property Ads', color: 'from-purple-500 to-pink-500' },
+    { id: 24, name: 'property_ad_2', image: '/property_ad_2.jpg', group: 'Property Ads', color: 'from-purple-500 to-pink-500' },
+
+    // Royal Branding
+    { id: 25, name: 'royal_bc1', image: '/royal_bc1.jpg', group: 'Royal Branding', color: 'from-yellow-600 to-orange-600' },
+    { id: 26, name: 'royal_bc2', image: '/royal_bc2.jpg', group: 'Royal Branding', color: 'from-yellow-600 to-orange-600' },
+    { id: 27, name: 'royal_group', image: '/royal_group.jpg', group: 'Royal Branding', color: 'from-yellow-600 to-orange-600' },
+    { id: 28, name: 'Royal_logo', image: '/Royal_logo.jpg', group: 'Royal Branding', color: 'from-yellow-600 to-orange-600' },
+
+    // Screenshots
+    { id: 29, name: 'screenshot1', image: '/screenshot1.jpg', group: 'Screenshots', color: 'from-gray-600 to-gray-800' },
+    { id: 30, name: 'screenshot2', image: '/screenshot2.jpg', group: 'Screenshots', color: 'from-gray-600 to-gray-800' },
+
+    // Additional Designs
+    { id: 31, name: '1', image: '/1.jpg', group: 'Featured Works', color: 'from-red-500 to-pink-500' },
+    { id: 32, name: '2', image: '/2.jpg', group: 'Featured Works', color: 'from-red-500 to-pink-500' },
+    { id: 33, name: 'allama_iqbal', image: '/allama_iqbal.jpg', group: 'Featured Works', color: 'from-red-500 to-pink-500' },
+    { id: 34, name: 'birthday_poster', image: '/birthday_poster.jpg', group: 'Event Posters', color: 'from-pink-500 to-rose-500' },
+    { id: 35, name: 'dirleh_poster', image: '/dirleh_poster.jpg', group: 'Event Posters', color: 'from-pink-500 to-rose-500' },
+    { id: 36, name: 'Easy_for', image: '/Easy_for.jpg', group: 'Miscellaneous', color: 'from-teal-500 to-cyan-500' },
+    { id: 37, name: 'gb', image: '/gb.jpg', group: 'Miscellaneous', color: 'from-teal-500 to-cyan-500' },
+    { id: 38, name: 'govt_cert', image: '/govt_cert.jpg', group: 'Certificates', color: 'from-slate-600 to-slate-800' },
+    { id: 39, name: 'mining', image: '/mining.jpg', group: 'Miscellaneous', color: 'from-teal-500 to-cyan-500' },
+    { id: 40, name: 'q1', image: '/q1.jpg', group: 'Premium Designs', color: 'from-violet-500 to-purple-500' },
+    { id: 41, name: 'q2', image: '/q2.jpg', group: 'Premium Designs', color: 'from-violet-500 to-purple-500' },
+    { id: 42, name: 'ramzan_calander', image: '/ramzan_calander.jpg', group: 'Event Posters', color: 'from-pink-500 to-rose-500' },
+    { id: 43, name: 'revaaj_logo', image: '/revaaj_logo.jpg', group: 'Logo Design', color: 'from-red-600 to-orange-600' },
+    { id: 44, name: 'sink_cert', image: '/sink_cert.jpg', group: 'Certificates', color: 'from-slate-600 to-slate-800' },
+    { id: 45, name: 'cv_m', image: '/cv_m.jpg', group: 'Professional', color: 'from-blue-600 to-cyan-600' }
+  ];
+
+  // Group images by their group name
+  const groupedItems = Array.from(
+    allImages.reduce((map, img) => {
+      if (!map.has(img.group)) {
+        map.set(img.group, { group: img.group, color: img.color, items: [] });
+      }
+      map.get(img.group)!.items.push(img);
+      return map;
+    }, new Map<string, any>()).values()
+  );
 
   return (
     <div className="bg-background min-h-screen font-sans overflow-hidden">
@@ -395,6 +474,24 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* Portfolio Groups with Carousels */}
+      <section className="py-24 px-4 bg-gradient-to-b from-background to-card/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Complete Portfolio Gallery</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Browse through all design categories with interactive carousels
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {groupedItems.map((group) => (
+              <CarouselGroup key={group.group} group={group} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="relative py-24 overflow-hidden">
         <video
@@ -443,6 +540,101 @@ export default function Portfolio() {
           <p>© 2024 Qamar Abbas. All rights reserved. | Graphic Designer & Digital Marketer</p>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function CarouselGroup({ group }: { group: any }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? group.items.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev === group.items.length - 1 ? 0 : prev + 1));
+  };
+
+  const visibleItems = group.items.length <= 3 
+    ? group.items 
+    : [
+        group.items[currentIndex],
+        group.items[(currentIndex + 1) % group.items.length],
+        group.items[(currentIndex + 2) % group.items.length]
+      ];
+
+  return (
+    <div className="rounded-2xl overflow-hidden border border-border bg-card p-6 lg:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+      {/* Group Header */}
+      <div className="mb-8">
+        <div className={`inline-block bg-gradient-to-r ${group.color} rounded-lg px-4 py-2 mb-4`}>
+          <h3 className="text-white font-semibold text-sm uppercase tracking-widest">{group.group}</h3>
+        </div>
+        <p className="text-muted-foreground text-sm">
+          {group.items.length} design{group.items.length !== 1 ? 's' : ''} in this collection
+        </p>
+      </div>
+
+      {/* Carousel Container */}
+      <div className="relative">
+        {/* Items Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          {visibleItems.map((item: any, idx: number) => (
+            <div
+              key={item.id}
+              className="group relative bg-muted rounded-xl overflow-hidden border border-border hover:border-accent transition-all duration-300 cursor-pointer"
+            >
+              <div className="relative h-64 overflow-hidden bg-muted">
+                <img
+                  src={item.image || "/placeholder.svg"}
+                  alt={item.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                  <p className="text-white text-xs font-semibold uppercase">{item.name}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Navigation Controls */}
+        {group.items.length > 3 && (
+          <div className="flex items-center justify-between pt-4">
+            <button
+              onClick={handlePrev}
+              className="p-2.5 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 transition-colors duration-300 shadow-md hover:shadow-lg"
+              aria-label="Previous items"
+            >
+              <ChevronLeft size={20} />
+            </button>
+
+            {/* Pagination Dots */}
+            <div className="flex gap-2">
+              {Array.from({ length: Math.ceil(group.items.length / 3) }).map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx * 3)}
+                  className={`rounded-full transition-all duration-300 ${
+                    Math.floor(currentIndex / 3) === idx
+                      ? 'bg-accent w-8 h-2'
+                      : 'bg-border hover:bg-muted-foreground w-2 h-2'
+                  }`}
+                  aria-label={`Go to page ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={handleNext}
+              className="p-2.5 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 transition-colors duration-300 shadow-md hover:shadow-lg"
+              aria-label="Next items"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
