@@ -22,63 +22,63 @@ export default function Portfolio() {
       id: 1,
       title: 'Bar-B-Q Menu',
       category: 'restaurant',
-      image: './a4-2.jpg',
+      image: '/a4_2.jpg',
       description: 'Elegant restaurant menu design with ornamental borders'
     },
     {
       id: 2,
       title: 'Breakfast Menu',
       category: 'restaurant',
-      image: '/a4d-3.jpg',
+      image: '/a4d_3.jpg',
       description: 'Classic breakfast menu design with food imagery'
     },
     {
       id: 3,
       title: 'Drinks Menu',
       category: 'restaurant',
-      image: '/a4d-4.jpg',
+      image: '/a4d_4.jpg',
       description: 'Comprehensive drinks and beverages menu design'
     },
     {
       id: 4,
       title: 'Dirleh Hotel Menu',
       category: 'hotel',
-      image: '/a4d-1.jpg',
+      image: '/a4d_1.jpg',
       description: 'Premium hotel restaurant menu design'
     },
     {
       id: 5,
       title: 'Blossom Resorts Menu',
       category: 'hotel',
-      image: '/a4-1.jpg',
+      image: '/a4_1.jpg',
       description: 'Luxury resort menu with ornate decorations'
     },
     {
       id: 6,
       title: 'Chinese Food Menu',
       category: 'restaurant',
-      image: '/a4-3.jpg',
+      image: '/a4_3.jpg',
       description: 'Asian cuisine menu with elegant styling'
     },
     {
       id: 7,
       title: 'Pakistani Dishes',
       category: 'restaurant',
-      image: '/a4d-2.jpg',
+      image: '/a4d_2.jpg',
       description: 'Traditional Pakistani cuisine menu design'
     },
     {
       id: 8,
       title: 'Professional Resume',
       category: 'professional',
-      image: '/cv-m.jpg',
+      image: '/cv_m.jpg',
       description: 'Modern professional CV and resume design'
     },
     {
       id: 9,
       title: 'Special Requests Menu',
       category: 'restaurant',
-      image: '/a4-4.jpg',
+      image: '/a4_4.jpg',
       description: 'Specialty items and custom orders menu'
     }
   ];
